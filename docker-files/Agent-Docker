@@ -1,0 +1,17 @@
+FROM puppet/puppetserver:7.6.1
+
+#INSTALL WGET (Dependencia para instalação do Puppet-agent)
+RUN apt-get update \
+&& apt-get install -y wget
+
+#Install Puppet-Agent
+WORKDIR /tmp
+RUN wget https://apt.puppet.com/puppet7-release-focal.deb \
+&& dpkg -i puppet7-release-focal.deb \
+&& apt-get update \
+&& apt-get install puppet-agent -y 
+
+#Configurando Puppet Agent
+RUN /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
+ENV PATH=/opt/puppetlabs/bin:$PATH
+RUN puppet config set server $SERVERNAME --section main

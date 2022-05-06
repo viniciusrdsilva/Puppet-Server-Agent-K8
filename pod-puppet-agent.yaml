@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: puppet-agent.local
+  labels:
+    app: puppet-agent.local
+spec:
+  containers:
+    - name: container-puppet-agent
+      image: nginx:latest

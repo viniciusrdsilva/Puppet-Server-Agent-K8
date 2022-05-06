@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: puppet-server.local
+  labels:
+    app: puppet-server.local
+spec:
+  containers:
+    - name: container-puppet-server
+      image: puppet/puppetserver:7.6.1
